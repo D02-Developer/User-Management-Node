@@ -1,0 +1,66 @@
+<%- include('./partials/header') %>
+
+  <!-- Main Section -->
+  <main id="main-container">
+    <div class="container">
+      <div class="box-nav d-flex justify-between">
+        <a href="/add-user" class="border-shadow">
+          <span class="text-gradient">New User <i class="fas fa-user"></i></span>
+        </a>
+      </div>
+
+      <!-- Form -->
+      <table class="table mt-3">
+        <thead class="thead-dark">
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Mobile</th>
+            <!-- <th>Gender</th>
+                <th>Status</th> -->
+            <th>Action</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% var i=1 %>
+            <% data.forEach((item)=> { %>
+              <tr>
+                <td>
+                  <%= i++ %>
+                </td>
+                <td>
+                  <%= item.name %>
+                </td>
+                <td>
+                  <%= item.email %>
+                </td>
+                <td>
+                  <%= item.mobile %>
+                </td>
+                <!-- <td>Male</td>
+              <td>Active</td> -->
+                <td>
+                  <form action="/edit-user/<%= item._id %>" method="GET" style="float: left;">
+                    <button class="btn border-shadow update">
+                      <span class="text-gradient"><i class="fas fa-pencil-alt"></i></span>
+                    </button>
+                  </form>
+                  <form action="/<%= item._id %>" method="POST">
+                    <button type="submit" class="btn border-shadow delete">
+                      <span class="text-gradient"><i class="fas fa-trash-alt"></i></span>
+                    </button>
+                  </form>
+                </td>
+              </tr>
+              <% }) %>
+        </tbody>
+      </table>
+      <!-- /Form -->
+
+    </div>
+  </main>
+  <!-- /Main Section -->
+
+  <%- include('./partials/footer') %>
